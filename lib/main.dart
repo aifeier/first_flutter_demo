@@ -87,44 +87,46 @@ class listWidgetState extends State<ListWidget> {
     _items.add("DrawerApp");
     _items.add("OrientationChangeApp");
     _items.add("ImageDemo");
-    return _items.map((s) {
-      return new ListTile(
-        title: new Text(s),
-        onTap: () {
-          Widget w;
-          switch (s) {
-            case 'SimpleListView':
-              w = new ListViewRandomWords();
-              break;
-            case 'MaterialTheme':
-              w = new MaterialThemeApp();
-              break;
-            case 'SnackBar':
-              w = new SnackBarApp();
-              break;
-            case 'TabBar':
-              w = new TabBarApp();
-              break;
-            case 'DrawerApp':
-              w = new DrawerApp();
-              break;
-            case 'OrientationChangeApp':
-              w = new OrientationChangeApp();
-              break;
-            case 'ImageDemo':
-              w = new ImageDemo();
-              break;
-          }
-          if (null != w) {
-            Navigator.of(context).push(
-                new MaterialPageRoute(builder: (context) {
-                  return w;
-                })
-            );
-          }
-        },
-      );
-    }).toList();
+    return ListTile.divideTiles(
+        context: context,
+        tiles: _items.map((s) {
+          return new ListTile(
+            title: new Text(s),
+            onTap: () {
+              Widget w;
+              switch (s) {
+                case 'SimpleListView':
+                  w = new ListViewRandomWords();
+                  break;
+                case 'MaterialTheme':
+                  w = new MaterialThemeApp();
+                  break;
+                case 'SnackBar':
+                  w = new SnackBarApp();
+                  break;
+                case 'TabBar':
+                  w = new TabBarApp();
+                  break;
+                case 'DrawerApp':
+                  w = new DrawerApp();
+                  break;
+                case 'OrientationChangeApp':
+                  w = new OrientationChangeApp();
+                  break;
+                case 'ImageDemo':
+                  w = new ImageDemo();
+                  break;
+              }
+              if (null != w) {
+                Navigator.of(context).push(
+                    new MaterialPageRoute(builder: (context) {
+                      return w;
+                    })
+                );
+              }
+            },
+          );
+        })).toList();
   }
 
   Widget _buildList() {
@@ -135,12 +137,14 @@ class listWidgetState extends State<ListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Simple Flutter Demo'),
-      ),
-      body: _buildList(),
-    );
+    return new MaterialApp(
+        title: 'Flutter Demo',
+        home: new Scaffold(
+          appBar: new AppBar(
+            title: new Text('Simple Flutter Demo'),
+          ),
+          body: _buildList(),
+        ));
   }
 
 }
