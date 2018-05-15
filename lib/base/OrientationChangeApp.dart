@@ -10,7 +10,7 @@ class OrientationChangeApp extends StatelessWidget {
           crossAxisCount: Orientation.portrait == orientation ? 2 : 3,
           children: new List.generate(50, (index) {
             return new Center(
-              child: new Text('Item &index'),
+              child: new Text('Item $index'),
             );
           }),
         );
