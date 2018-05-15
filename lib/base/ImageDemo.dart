@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ImageDemo extends StatelessWidget {
 
@@ -9,7 +10,9 @@ class ImageDemo extends StatelessWidget {
       'https://up.enterdesk.com/edpic_source/63/6a/4e/636a4ecd6798a6382376ec8515378065.jpg'
     ];
     return imgs.map((s) {
-      return new ListTile(title: new Image.network(s));
+      return new ListTile(title: new CachedNetworkImage(
+          placeholder: new CircularProgressIndicator(),
+          imageUrl: s));
     }).toList();
   }
 
